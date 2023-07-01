@@ -108,10 +108,12 @@ class Settings:
 
     def readImageInfo(self, fsettings):
         # image: width, height, fps, bRGB
-        self.imageWidth_ = fsettings.getNode("Camera.width").int()
-        self.imageHeight_ = fsettings.getNode("Camera.height").int()
-        self.imageFPS_ = fsettings.getNode("Camera.fps").real()
-        self.imageRGB_ = fsettings.getNode("Camera.RGB").bool()
+        # self.imageWidth_ = fsettings['Camera.width']
+        # self.imageWidth_, found = readParameterInt(fsettings, "Camera.width")
+        # self.imageHeight_ = fsettings.getNode("Camera.height").int()
+        # self.imageFPS_ = fsettings.getNode("Camera.fps").real()
+        # self.imageRGB_ = fsettings.getNode("Camera.RGB").bool()
+        pass
     
     def readORB(self, fsettings):
         pass

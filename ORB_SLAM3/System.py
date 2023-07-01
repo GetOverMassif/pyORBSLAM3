@@ -13,9 +13,22 @@ class System:
         self.mpKeyFrameDatabase = KeyFrameDatabase()
         self.mpMap = Map()
         self.mpFrameDrawer = FrameDrawer()
-        self.mpMapDrawer = MapDrawer(self.mpMap)
+        self.mpMapDrawer = MapDrawer(self.mpMap, self.settings)
         self.mpTracker = Tracking(self.settings, self.mpMap, self.mpKeyFrameDatabase, self.mpFrameDrawer, self.mpMapDrawer, esensor)
 
         pass
+
+    def TrackMonocular(self, im, timestamp):
+        # TODO: check sensor mode
+
+        # TODO: check mode change(activate/deactivate localization)
+
+        # TODO: check reset
+
+        Tcw = self.mpTracker.TrackMonocular(im, timestamp)
+
+        # update tracking_state, mappoints and frame
+
+        return Tcw
 
     
