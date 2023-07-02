@@ -46,8 +46,8 @@ class Settings:
         self.readImageInfo(fsettings)
         print(f"\t-Loaded image info")
 
-        # self.readORB(fsettings)
-        # print(f"\t-Loaded ORB settings")
+        self.readORB(fsettings)
+        print(f"\t-Loaded ORB settings")
         # self.readViewer(fsettings)
         # print(f"\t-Loaded viewer settings")
         # self.readLoadAndSave(fsettings)
@@ -116,7 +116,12 @@ class Settings:
         pass
     
     def readORB(self, fsettings):
-        pass
+
+        nFeatures_, found = readParameterInt(fsettings, "ORBextractor.nFeatures")
+        scaleFactor_, found = readParameterFloat(fsettings, "ORBextractor.scaleFactor")
+        nLevels_, found = readParameterInt(fsettings, "ORBextractor.nLevels")
+        initThFAST_, found = readParameterInt(fsettings, "ORBextractor.iniThFAST")
+        minThFAST_, found = readParameterInt(fsettings, "ORBextractor.minThFAST")
 
     def readViewer(self, fsettings):
         pass
@@ -126,3 +131,14 @@ class Settings:
 
     def readOtherParameters(self, fsettings):
         pass
+
+    def nFeatures(self):
+        return self.nFeatures_
+    def nLevels(self):
+        return self.nLevels_
+    def initThFAST(self):
+        return self.initThFAST_
+    def minThFAST(self):
+        return self.minThFAST_
+    def scaleFactor(self):
+        return self.scaleFactor_

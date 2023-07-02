@@ -1,5 +1,17 @@
 import cv2
 import numpy as np
+from enum import Enum
+from ORB_SLAM3.Frame import Frame
+from ORB_SLAM3.ORBextractor import ORBextractor
+
+class eTrackingState(Enum):
+    SYSTEM_NOT_READY=-1
+    NO_IMAGES_YET=0
+    NOT_INITIALIZED=1
+    OK=2
+    RECENTLY_LOST=3
+    LOST=4
+    OK_KLT=5
 
 class Tracking:
     def __init__(self, settings, mpMap, mpKeyFrameDatabase, mpFrameDrawer, mpMapDrawer, esensor) -> None:
@@ -10,6 +22,8 @@ class Tracking:
         self.mbInitWith3KFs = False
         self.mnNumDataset = 0
 
+        self.mState = eTrackingState.NO_IMAGES_YET
+
         # print all cam info
         pass
 
@@ -19,8 +33,17 @@ class Tracking:
         # image: K, min/max Frame
 
         # ORB
+        # mpIniORBextractor.nfeatures = 5 * mpORBextractorRight.nfeatures
 
-        # imu
+        # int nFeatures = settings
+        # int nLevels = 
+        # int fIniThFAST
+        # int fMinThFAST
+        # int fScaleFactor
+
+        # self.mpInitExtractor = ORBextractor(nFeatures, fScaleFactor, nLevels, fIniThFAST, fMinThFAST)
+        # self.mpTrackExtractor = ORBextractor(5*nFeatures, fScaleFactor, nLevels, fThFAST, fMinThFAST)
+        # # imu
 
         pass
 
@@ -29,11 +52,19 @@ class Tracking:
         cv2.imshow("im", im)
         cv2.waitKey(1)
         
-        # convert to grayscale
-        mImGray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+        # Step 1: convert to gray
+        self.mImGray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+
+        # Step 2: create Frame
 
         # if not initialized or no image yet, mCurrentFrame created by InitFeatureExtractor
         # else mCurrentFrame created by FeatureExtractor
+
+        # TODO: 可能还要考虑该帧ID与初始ID之间的差值
+        if self.mState == eTrackingState.NOT_INITIALIZED or self.mState == eTrackingState.NO_IMAGES_YET:
+            self.mCurrentFrame = Frame(self.mImGray, timestamp)
+        else:
+            self.mCurrentFrame = Frame()
 
         self.Track()
 

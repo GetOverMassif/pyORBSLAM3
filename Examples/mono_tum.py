@@ -27,10 +27,10 @@ if __name__=="__main__":
             -c path_to_settings \
             -s path_to_sequence"
     )
-    # default_path_to_settings = "/home/lj/Documents/pyORBSLAM3/configs/TUM1.yaml"
-    # default_path_to_sequence = "/media/lj/TOSHIBA/dataset/TUM/2-Handheld_SLAM/rgbd_dataset_freiburg1_desk/rgb"
-    default_path_to_settings = "/home/nio/文档/pyORBSLAM3/configs/TUM1.yaml"
-    default_path_to_sequence = "/mnt/dataDisk/BUAA/TUM/RGB-D/Handheld_SLAM/rgbd_dataset_freiburg1_desk"
+    default_path_to_settings = "/home/lj/Documents/pyORBSLAM3/configs/TUM1.yaml"
+    default_path_to_sequence = "/media/lj/TOSHIBA/dataset/TUM/2-Handheld_SLAM/rgbd_dataset_freiburg1_desk"
+    # default_path_to_settings = "/home/nio/文档/pyORBSLAM3/configs/TUM1.yaml"
+    # default_path_to_sequence = "/mnt/dataDisk/BUAA/TUM/RGB-D/Handheld_SLAM/rgbd_dataset_freiburg1_desk"
     # argparser.add_argument('-v', '--path_to_vocabulary', type=str, help='Path to vocabulary file', required=True)
     argparser.add_argument('-c', '--path_to_settings', type=str, help='Path to settings file', default=default_path_to_settings)
     argparser.add_argument('-s', '--path_to_sequence', type=str, help='Path to sequence folder', default=default_path_to_sequence)
